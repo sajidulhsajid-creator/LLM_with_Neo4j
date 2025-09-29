@@ -6,10 +6,10 @@ from pyvis.network import Network
 import streamlit.components.v1 as components
 
 # ---------- Config & Secrets ----------
-GENAI_API_KEY = "AIzaSyCog3DfwRrTuZ7v9EUq6qG4aczJWTWYW70"
-NEO4J_URI = "neo4j+s://54be519f.databases.neo4j.io"
-NEO4J_USER = "54be519f"
-NEO4J_PASS = "yeoFxH3cdFqpia7k_MACKb669Kb1lxTPkZ1v0xq-RrU"
+GENAI_API_KEY = os.getenv("GENAI_API_KEY") or st.secrets.get("GENAI_API_KEY")
+NEO4J_URI  = os.getenv("NEO4J_URI") or st.secrets.get("NEO4J_URI")
+NEO4J_USER = os.getenv("NEO4J_USER") or st.secrets.get("NEO4J_USER")
+NEO4J_PASS = os.getenv("NEO4J_PASS") or st.secrets.get("NEO4J_PASS")
 
 genai_client = genai.Client(api_key=GENAI_API_KEY)
 driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASS))
